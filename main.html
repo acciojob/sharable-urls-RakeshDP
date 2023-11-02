@@ -1,25 +1,33 @@
 <!DOCTYPE html>
 <html>
   <body>
-	  <h3 id="url">https://localhost:8080/</h3>
-	  <form onsubmit="handleSubmit(event)">
-			<lable for="name">Name:
-				<input type="text" id="name" name="name" />
-			</lable>
-		  <br/>
-		  <br/>
-		  <lable for="year">Year:
-				<input type="number" id="year" name="year" />
-			</lable>
-		  <br/>
-		  <br/>
-		  <input type="submit" id="button" value="Generate URL">
-	  </form>
-	
-		
-	  
-    <script type="text/javascript" src="./script.js">
-</script>
-  </body>
+    <form id="urlForm" onsubmit="generateURL(event)">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        <br>
+        <label for="year">Year:</label>
+        <input type="number" id="year" name="year">
+        <br>
+        <input type="submit" id="button" value="Generate URL">
+    </form>
+    <h3 id="url">https://localhost:8080/</h3>
+
+    <script>
+        function generateURL(event) {
+            event.preventDefault();
+
+            const nameInput = document.getElementById("name");
+            const yearInput = document.getElementById("year");
+            const urlElement = document.getElementById("url");
+
+            const nameValue = nameInput.value;
+            const yearValue = yearInput.value;
+
+            const queryString = `?name=${nameValue}&year=${yearValue}`;
+
+            urlElement.textContent = `https://localhost:8080/${queryString}`;
+        }
+    </script>
+</body>
 
 </html>
